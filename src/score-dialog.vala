@@ -72,19 +72,21 @@ public class ScoreDialog : Gtk.Dialog
         scores.insert_column_with_attributes (-1, _("Time"), renderer, "text", 1, "weight", 2);
         scores.model = score_model;
         scores.show ();
-        scroll.add (scores);
-
-        foreach (var entry in history.entries)
-            entry_added_cb (entry);
+        scroll.add (scores); 
+        
+        foreach (var entry in history.entries) 
+            entry_added_cb (entry); 
     }
 
     public void set_map (string name)
     {
         score_model.clear ();
 
+
         var entries = history.entries.copy ();
         entries.sort (compare_entries);
 
+        var i = 1; 
         foreach (var entry in entries)
         {
             if (entry.name != name)
@@ -116,7 +118,9 @@ public class ScoreDialog : Gtk.Dialog
                 else
                     piter = iter;
                 scores.scroll_to_cell (score_model.get_path (piter), null, false, 0, 0);
-            }
+            } 
+            if(i >= 10) break;
+            ++i; 
         }
     }
 

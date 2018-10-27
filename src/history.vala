@@ -32,6 +32,7 @@ public class History : Object
         entries = new List<HistoryEntry> ();
 
         var contents = "";
+
         try
         {
             FileUtils.get_contents (filename, out contents);
